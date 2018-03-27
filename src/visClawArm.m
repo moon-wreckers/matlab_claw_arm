@@ -1,19 +1,18 @@
-T = [0:0.01*pi:0.5*pi, 0.5*pi:-0.01*pi:0];
+function visClawArm(theta1, theta2, x_0)
 
-rounds = 3;
-for i_round = 1:rounds
-    for i_theta = 1:length(T)
-        P = simClawArm(T(i_theta), T(i_theta));
+if ~exist('x_0', 'var')
+    x_0 = [0, 0, 0]';
+end
 
-        figure(1);
-        plot3(P(1,:), P(2,:), P(3,:), 'LineWidth', 8);
-        grid on;
-        xlim([-0.1 0.5]);
-        ylim([-0.1 0.5]);
-        zlim([0 0.5]);
-        xlabel('x');
-        ylabel('y');
-        zlabel('z');
-        pause(0.01);
-    end
+P = simClawArm(theta1, theta2, x_0);
+
+plot3(P(1,:), P(2,:), P(3,:), 'LineWidth', 8);
+grid on;
+xlim([-0.1 0.5]);
+ylim([-0.1 0.5]);
+zlim([0 0.5]);
+xlabel('x');
+ylabel('y');
+zlabel('z');
+
 end
